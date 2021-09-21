@@ -5,7 +5,6 @@ import configparser
 def get_api_keys():
     config = configparser.ConfigParser()
     config.read('config.ini')
-    print("Config file 'person.ini' created")
     return config
 
 def get_weather(place, days):

@@ -21,8 +21,8 @@ def weather():
 
     response = {
         'city': city,
-        'from': weather[0][0],
-        'to': weather[days - 1][0],
+        'from': forecasts[0][0],
+        'to': forecasts[days - 1][0],
     }
     response.update(count_forecasts)
     json.dumps(response)
