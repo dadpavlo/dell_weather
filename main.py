@@ -1,20 +1,29 @@
 import requests
 import json
-import xml.etree.ElementTree as ET
-import xml
 
 
 class YandexWeather:
 
-    def __init__(self, lat, lon):
+    def __init__(self, lat, lon, days):
         self.lat = lat
         self.lon = lon
-        URL = 'https://api.weather.yandex.ru/v2/forecast?lat=%s&lon=%s&limit=3' % (self.lat, self.lon)
+        self.days = days
+        URL = 'https://api.weather.yandex.ru/v2/forecast?lat=%s&lon=%s&limit=%s' % (self.lat, self.lon, self.days)
         session = requests.Session()
         session.auth = ('X-Yandex-API-Key', ' ')
         response = session.get(URL, headers={'X-Yandex-API-Key': '61e3f1cf-43b8-4b4e-845d-9345fa357b47'})
         s = json.dumps(response.json())
-        print(json.loads(s))
+        s = json.loads(s)
+        temp = dict()
+        for i in range(self.days):
+            data = list()
+            data.append(s['forecasts'][i]['parts']['day']['temp_avg'])
+            data.append(s['forecasts'][i]['parts']['day']['humidity'])
+            data.append(s['forecasts'][i]['parts']['day']['pressure_mm'])
+            temp.update({s['forecasts'][i]['date']: data})
+            data = []
+        print(temp)
+
 
 
 class YandexMaps:
@@ -29,28 +38,8 @@ class YandexMaps:
         coords = json.loads(coords)
         coordLat = coords.split()[0]
         coordLon = coords.split()[1]
-        print(coords)
-        YandexWeather(coordLat, coordLon)
+        YandexWeather(coordLon, coordLat, 3)
 
-    # @property
-    # def getCoordsFromXml(response):
-    #     # try:
-    #     tree = ET.parse(response)
-    #     importSession = tree.getroot()
-    #     coords = importSession.find('Envelope')
-    #     name = coords[0].attrib
-    #     b = name.get('lowerCorner')
-    #     print(b)
-
-
-#
-# coords = """response.json()"""
-#         print(coords[0])
-
-
-# server(59.938951, 30.317695)
 if __name__ == '__main__':
-    YandexMaps('Самара')
-    # yandex_weather(59.938951, 30.317695) 37.038186, 'lon': 55.312148
-
+    YandexMaps('Нью-Йорк')
 
