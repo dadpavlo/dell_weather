@@ -1,11 +1,11 @@
-#How it works
+# How it works
 Enter:\
 ```/weather?city=<city>&days=<n>```
 
 Where **_city_** is any city or place, and **_n_** is the number of days for the forecast (less than 7).\
 Get a response in json format containing the average, median, maximum and minimum values of the temperature, humidity and pressure parameters.
 
-#For examle
+# For examle
 Enter:\
 ```/weather?city=Самара&days=3```\
 Get response: \
