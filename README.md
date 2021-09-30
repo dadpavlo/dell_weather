@@ -39,5 +39,9 @@ Start on local Linux machine \
 docker build [PATH_TO_DOCKERFILE] -t dell-weather \
 docker run -p 8080:8080 dell-weather
 
+Or you can pull image from Dockeer Hub
+docker pull dadpavlo/dell-weather:latest
+docker run -p 8080:8080 -e dell-weather:latest
+
 # API KEY
 Create file config.ini and requests keys from the developer
