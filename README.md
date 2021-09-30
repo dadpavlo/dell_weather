@@ -34,3 +34,9 @@ Get response:
     "to": "2021-09-23"
 }
 ```
+# Docker
+Start on local Linux machine docker build [PATH_TO_DOCKERFILE] -t dell-weather
+docker run -p 8080:8080 dell-weather
+
+# API KEY
+Create file config.ini and requests keys from the developer
