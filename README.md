@@ -35,7 +35,7 @@ Get response:
 }
 ```
 # Docker
-Start on local Linux machine docker build [PATH_TO_DOCKERFILE] -t dell-weather /
+Start on local Linux machine docker build [PATH_TO_DOCKERFILE] -t dell-weather \
 docker run -p 8080:8080 dell-weather
 
 # API KEY
